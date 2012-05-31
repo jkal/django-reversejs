@@ -1,0 +1,17 @@
+Usage
+=====
+
+1. Add 'reversejs' in INSTALLED_APPS.
+
+2. Hook the view in the URLconf:
+
+  url(r'^reversejs/$', 'reversejs.views.reversejs', name='reversejs'),
+  
+3. Somewhere in your main template, include the necessary JS files:
+
+  <script type="text/javascript" src="{{ STATIC_URL }}js/reverse.js"></script>
+  <script type="text/javascript" src="{% url reversejs %}?callback=reversejs.init"></script>
+
+4. Everytime you want to reverse a URL by its name:
+
+  var public_profile_url = reversejs.resolve('profile_public', args={username: 'bob'});
